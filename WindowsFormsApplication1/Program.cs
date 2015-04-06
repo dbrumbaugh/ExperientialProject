@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+
+//TODO Extract shared plotting routines from the winform objects and create a shared library
+//TODO Finish migrating routines to FORTRAN dll
+//TODO Add timestep input, multiplotting, and validation to the projectile motion form
 
 namespace WindowsFormsApplication1
 {
     internal static class Program
     {
-        /// <summary>
-        ///     The main entry point for the application.
-        /// </summary>
+        //DllImport line to add FORTRAN dll to the program.
+        [DllImport("ExampleModels.dll")] //NOTE: DLL is not yet linked, so this line will not actually work.
+                                         //The code will compile, but any attempt to reference the following external
+                                         //routines will end in failure.
+
+        //List of external routines contained within the FORTRAN dlls.  DO NOT TRY TO USE THESE YET.
+        public static extern double[,] radioactive_decay_mod(ref int nuclei, ref double decayconst, ref double timestep, ref double maxtime);
+        public static extern double[,] projectile_motion_mod(ref double initvelocity, ref double angle, ref double timestep, ref double maxTime);
+        //END list of external routines
+
         [STAThread]
         private static void Main()
         {
