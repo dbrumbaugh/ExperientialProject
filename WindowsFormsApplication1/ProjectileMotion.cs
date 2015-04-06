@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
         private void calculateButton_Click(object sender, EventArgs e)
         {
             AddSeries("Model" + (seriesCount + 1));
-            PlotModel();
+            PlotModel1();
 
         }
 
@@ -38,8 +38,16 @@ namespace WindowsFormsApplication1
 
         private void PlotModel()
         {
+            double[,] values = Program.ProjectileMotionModelWithAirResistance(double.Parse(velocityBox.Text),
+                Double.Parse(angleBox.Text), .01, .05);
+
+            PlotNextSeries(values);
+        }
+
+        private void PlotModel1()
+        {
             double[,] values = Program.ProjectileMotionModel(double.Parse(velocityBox.Text),
-                Double.Parse(angleBox.Text), .1, 100);
+                Double.Parse(angleBox.Text), .01);
 
             PlotNextSeries(values);
         }
@@ -48,6 +56,12 @@ namespace WindowsFormsApplication1
         {
             for (var i = 0; i < values.GetLength(0); i++)
                 chartArea.Series[seriesCount].Points.AddXY(values[0, i], values[1, i]);
+        }
+
+        private void calculateResistanceButton_Click(object sender, EventArgs e)
+        {
+            AddSeries("Model" + (seriesCount + 1));
+            PlotModel();
         }
 
     }

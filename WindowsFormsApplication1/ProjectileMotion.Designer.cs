@@ -36,6 +36,7 @@
             this.velocityBox = new System.Windows.Forms.TextBox();
             this.angleBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.calculateResistanceButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartArea)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,11 +94,22 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Angle of throw";
             // 
+            // calculateResistanceButton
+            // 
+            this.calculateResistanceButton.Location = new System.Drawing.Point(543, 291);
+            this.calculateResistanceButton.Name = "calculateResistanceButton";
+            this.calculateResistanceButton.Size = new System.Drawing.Size(170, 62);
+            this.calculateResistanceButton.TabIndex = 6;
+            this.calculateResistanceButton.Text = "Graph w/ Air Resistance";
+            this.calculateResistanceButton.UseVisualStyleBackColor = true;
+            this.calculateResistanceButton.Click += new System.EventHandler(this.calculateResistanceButton_Click);
+            // 
             // ProjectileMotion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 549);
+            this.Controls.Add(this.calculateResistanceButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.angleBox);
             this.Controls.Add(this.velocityBox);
@@ -120,5 +132,6 @@
         private System.Windows.Forms.TextBox velocityBox;
         private System.Windows.Forms.TextBox angleBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button calculateResistanceButton;
     }
 }
