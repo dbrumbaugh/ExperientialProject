@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace WindowsFormsApplication1
+namespace NumericalMethodsInCS
 {
-    public partial class DisplayForm : Form
+    public partial class RadioactiveDecay : Form
     {
         private const double maxTime = 10;
         private int nuclei;
@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
         private double timestep;
         private bool timestepValid;
 
-        public DisplayForm()
+        public RadioactiveDecay()
         {
             InitializeComponent();
         }
