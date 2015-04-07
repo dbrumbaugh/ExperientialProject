@@ -12,12 +12,11 @@ namespace WindowsFormsApplication1
     internal static class Program
     {
         //DllImport line to add FORTRAN dll to the program.
-        //[DllImport("ExampleModels.dll")] //NOTE: DLL is not yet linked, so this line will not actually work.
-                                         //The code will compile, but any attempt to reference the following external
-                                         //routines will end in failure.
+        [DllImport("ExampleModels.dll")] 
+                                         
 
         //List of external routines contained within the FORTRAN dlls.  DO NOT TRY TO USE THESE YET.
-        //public static extern double[,] radioactive_decay_mod(ref int nuclei, ref double decayconst, ref double timestep, ref double maxtime);
+        public static extern void radioactive_decay_mod(ref double[,] values, int nuclei, double decayconst, double timestep, double maxtime);
         //public static extern double[,] projectile_motion_mod(ref double initvelocity, ref double angle, ref double timestep, ref double maxTime);
         //END list of external routines
 
@@ -26,11 +25,16 @@ namespace WindowsFormsApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProjectileMotion());
+            Application.Run(new DisplayForm());
         }
 
         public static double[,] RadioactiveModel(int nuclei, double decayConstant, double timestep, double maxTime)
         {
+           // double[,] values = null;
+           // radioactive_decay_mod(ref values, nuclei, decayConstant, timestep, maxTime);
+           // return values;
+
+
             int stepNo = (int) Math.Round(maxTime/timestep);
 
             var results = new double[stepNo, stepNo];

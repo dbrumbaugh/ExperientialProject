@@ -1,8 +1,8 @@
-function radioactive_decay_mod(nuclei, decayconst, timestep, maxtime) result(results)
+subroutine radioactive_decay_mod(results, nuclei, decayconst, timestep, maxtime)
     integer, intent(in) :: nuclei
     integer :: stepno, i
     real, intent(in)    :: decayconst, timestep, maxtime
-    real, allocatable, dimension(:,:) :: results
+    real, allocatable, dimension(:,:), intent(out) :: results
     
     stepno = maxtime/timestep
     
@@ -16,7 +16,7 @@ function radioactive_decay_mod(nuclei, decayconst, timestep, maxtime) result(res
         results(1,i)  = results(0, i-1) + (radioactive_model_dev(nuclei, decayconst)*timestep)
     end do
     
-    end function radioactive_decay_mod
+    end subroutine radioactive_decay_mod
     
     function radioactive_model_dev(n, t)
         real, intent(in) :: t
