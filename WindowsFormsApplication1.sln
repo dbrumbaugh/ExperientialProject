@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{938867FC-4A00-48D5-BA28-3CB66CB72252}"
 EndProject
@@ -28,8 +28,8 @@ Global
 		{938867FC-4A00-48D5-BA28-3CB66CB72252}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{938867FC-4A00-48D5-BA28-3CB66CB72252}.Release|Win32.ActiveCfg = Release|Any CPU
 		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Mixed Platforms.ActiveCfg = Release|Win32
+		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Mixed Platforms.Build.0 = Release|Win32
 		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Win32.ActiveCfg = Debug|Win32
 		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Debug|Win32.Build.0 = Debug|Win32
 		{9B2CB1D5-3265-4D8D-9F6F-07366899D2CD}.Release|Any CPU.ActiveCfg = Release|Win32

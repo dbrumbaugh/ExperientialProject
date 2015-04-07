@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
                                          
 
         //List of external routines contained within the FORTRAN dlls.  DO NOT TRY TO USE THESE YET.
-        public static extern void radioactive_decay_mod(ref double[,] values, int nuclei, double decayconst, double timestep, double maxtime);
+        public static extern void radioactive_decay_mod(ref double[,] values, ref int nuclei, ref double decayconst, ref double timestep, ref double maxtime);
         //public static extern double[,] projectile_motion_mod(ref double initvelocity, ref double angle, ref double timestep, ref double maxTime);
         //END list of external routines
 
@@ -30,9 +30,9 @@ namespace WindowsFormsApplication1
 
         public static double[,] RadioactiveModel(int nuclei, double decayConstant, double timestep, double maxTime)
         {
-           // double[,] values = null;
-           // radioactive_decay_mod(ref values, nuclei, decayConstant, timestep, maxTime);
-           // return values;
+           double[,] values = null;
+           radioactive_decay_mod(ref values, ref nuclei, ref decayConstant, ref timestep, ref maxTime);
+           return values;
 
 
             int stepNo = (int) Math.Round(maxTime/timestep);

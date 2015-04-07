@@ -1,21 +1,26 @@
-subroutine radioactive_decay_mod(results, nuclei, decayconst, timestep, maxtime)
-    integer, intent(in) :: nuclei
-    integer :: stepno, i
-    real, intent(in)    :: decayconst, timestep, maxtime
-    real, allocatable, dimension(:,:), intent(out) :: results
+module radioactive_decay
+    contains
     
-    stepno = maxtime/timestep
+    subroutine radioactive_decay_mod(results, nuclei, decayconst, timestep, maxtime)
+        !DEC$ ATTRIBUTES DLLEXPORT, DECORATE, ALIAS : "radioactive_decay_mod" :: radioactive_decay_mod
+        !DEC$ ATTRIBUTES REFERENCE :: results,nuclei,decayconst,timestep,maxtime
     
-    allocate(results(0:stepno, 0:stepno))
+        integer, intent(in) :: nuclei
+        integer :: stepno, i
+        real, intent(in)    :: decayconst, timestep, maxtime
+        real, allocatable, dimension(:,:), intent(out) :: results
     
-    results(0,0) = 0
-    results(1,0) = nuclei
+        stepno = maxtime/timestep
     
-    do i = 1, stepno
-        results(0, i) = results(0, i-1) + timestep
-        results(1,i)  = results(0, i-1) + (radioactive_model_dev(nuclei, decayconst)*timestep)
-    end do
+        allocate(results(0:stepno, 0:stepno))
     
+        results(0,0) = 0
+        results(1,0) = nuclei
+    
+        do i = 1, stepno
+            results(0, i) = results(0, i-1) + timestep
+            results(1,i)  = results(0, i-1) + (radioactive_model_dev(nuclei, decayconst)*timestep)
+        end do
     end subroutine radioactive_decay_mod
     
     function radioactive_model_dev(n, t)
@@ -25,3 +30,6 @@ subroutine radioactive_decay_mod(results, nuclei, decayconst, timestep, maxtime)
         
         radioactive_model_dev = n * t
     end function radioactive_model_dev
+    
+end module
+    
