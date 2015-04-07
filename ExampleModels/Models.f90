@@ -1,3 +1,15 @@
+module dll_test
+    contains
+    
+    subroutine test_routine(a)
+        !DEC$ ATTRIBUTES DLLEXPORT, DECORATE, ALIAS : "test_routine" :: test_routine
+        !DEC$ ATTRIBUTES REFERENCE :: a
+    
+        integer, intent(inout) :: a
+        a = a + 5
+    end subroutine test_routine
+end module dll_test
+    
 module radioactive_decay
     contains
     
