@@ -7,7 +7,7 @@
     <ProjectGuid>{938867FC-4A00-48D5-BA28-3CB66CB72252}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication1</RootNamespace>
+    <RootNamespace>NumericalMethodsInCS</RootNamespace>
     <AssemblyName>WindowsFormsApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisplayForm.cs">
+    <Compile Include="RadioactiveDecay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DisplayForm.Designer.cs">
-      <DependentUpon>DisplayForm.cs</DependentUpon>
+    <Compile Include="RadioactiveDecay.Designer.cs">
+      <DependentUpon>RadioactiveDecay.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectileMotion.cs">
@@ -59,8 +59,8 @@
       <DependentUpon>ProjectileMotion.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DisplayForm.resx">
-      <DependentUpon>DisplayForm.cs</DependentUpon>
+    <EmbeddedResource Include="RadioactiveDecay.resx">
+      <DependentUpon>RadioactiveDecay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectileMotion.resx">
       <DependentUpon>ProjectileMotion.cs</DependentUpon>
@@ -73,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,7 +89,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExampleModels.dll" />
+    <Content Include="ExampleModels.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

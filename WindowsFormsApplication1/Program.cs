@@ -7,38 +7,49 @@ using System.Windows.Forms;
 //TODO Finish migrating routines to FORTRAN dll
 //TODO Add timestep input, multiplotting, and validation to the projectile motion form
 
-namespace WindowsFormsApplication1
+namespace NumericalMethodsInCS
 {
-    internal static class Program
+    class Program
     {
+         [STAThread]
         //DllImport line to add FORTRAN dll to the program.
         [DllImport("ExampleModels.dll")]
+        
 
 
         //List of external routines contained within the FORTRAN dlls.  DO NOT TRY TO USE THESE YET.
-        //public static extern void radioactive_decay_mod(ref double[,] values, ref int nuclei, ref double decayconst, ref double timestep, ref double maxtime);
+        public static extern void radioactive_decay_mod(ref double[] x, ref double[] y, ref int nuclei, ref double decayconst, ref double timestep, ref double maxtime);
         //public static extern double[,] projectile_motion_mod(ref double initvelocity, ref double angle, ref double timestep, ref double maxTime);
         //END list of external routines
-
-        public static extern void test_routine(ref int a);
-
-        [STAThread]
         private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DisplayForm());
+            Application.Run(new RadioactiveDecay());
+            
         }
 
         public static double[,] RadioactiveModel(int nuclei, double decayConstant, double timestep, double maxTime)
         {
-           double[,] values = null;
-            int a = 10;
-           //radioactive_decay_mod(ref values, ref nuclei, ref decayConstant, ref timestep, ref maxTime);
-            test_routine(ref a);
+          /*  double[,] results = null;
+            double[] x = null;
+            double[] y = null;
 
-           return values;
+            radioactive_decay_mod(ref x, ref y, ref nuclei, ref decayConstant, ref timestep, ref maxTime);
 
+            results = new double[(x.Length + 1), (y.Length + 1)];
+
+            for (int i = 0; i < x.Length; i++ )
+            {
+                results[0, i] = x[i];
+            }
+
+            for (int i = 0; i < y.Length; i++)
+            {
+                results[1, i] = y[i];
+            }
+
+            return results; */
 
             int stepNo = (int) Math.Round(maxTime/timestep);
 
@@ -55,6 +66,7 @@ namespace WindowsFormsApplication1
             }
 
             return results;
+
         }
 
 

@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace NumericalMethodsInCS
 {
-    partial class DisplayForm
+    partial class RadioactiveDecay
     {
         /// <summary>
         /// Required designer variable.
