@@ -12,45 +12,16 @@ namespace NumericalMethodsInCS
     class Program
     {
          [STAThread]
-        //DllImport line to add FORTRAN dll to the program.
-        //[DllImport("ExampleModels.dll")]
-        
-
-
-        //List of external routines contained within the FORTRAN dlls.  DO NOT TRY TO USE THESE YET.
-        //public static extern void radioactive_decay_mod(ref double[] x, ref double[] y, ref int nuclei, ref double decayconst, ref double timestep, ref double maxtime);
-        //public static extern double[,] projectile_motion_mod(ref double initvelocity, ref double angle, ref double timestep, ref double maxTime);
-        //END list of external routines
         private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProjectileMotion());
+            Application.Run(new VelocityModel());
             
         }
 
         public static double[,] RadioactiveModel(int nuclei, double decayConstant, double timestep, double maxTime)
         {
-          /*  double[,] results = null;
-            double[] x = null;
-            double[] y = null;
-
-            radioactive_decay_mod(ref x, ref y, ref nuclei, ref decayConstant, ref timestep, ref maxTime);
-
-            results = new double[(x.Length + 1), (y.Length + 1)];
-
-            for (int i = 0; i < x.Length; i++ )
-            {
-                results[0, i] = x[i];
-            }
-
-            for (int i = 0; i < y.Length; i++)
-            {
-                results[1, i] = y[i];
-            }
-
-            return results; */
-
             int stepNo = (int) Math.Round(maxTime/timestep);
 
             var results = new double[stepNo, stepNo];
@@ -64,9 +35,7 @@ namespace NumericalMethodsInCS
                 results[0, i] = results[0, i - 1] + timestep;
                 results[1, i] = results[1, i - 1] + (Derivative(results[1, i - 1], decayConstant)*timestep);
             }
-
             return results;
-
         }
 
 
@@ -87,9 +56,6 @@ namespace NumericalMethodsInCS
 
             //The force of gravity is the only force acting upon the object.
             double yAcceleration = GRAVITY;
-
-
-
 
             List<double> xPosition = new List<double>();
             List<double> yPosition = new List<double>();
@@ -131,9 +97,6 @@ namespace NumericalMethodsInCS
             //The force of gravity is the only force acting upon the object.
             double yAcceleration = GRAVITY;
 
-
-
-
             List<double> xPosition = new List<double>();
             List<double> yPosition = new List<double>();
 
@@ -171,103 +134,68 @@ namespace NumericalMethodsInCS
         }
 
         //assumption: no air resistance
-        public static double[,] ProjectileMotionVelocityModel(double initVelocity, double angle, double timestep)
+        public static double[,] ProjectileMotionVelocityModel(double initVelocity, double maxTime, double timestep)
         {
             const double GRAVITY = 9.8;
             int i = 1;
 
             //As soon as the object is released, there is no acceleration affecting horizontal motion
-            double xAcceleration = 0;
 
             //The force of gravity is the only force acting upon the object.
-            double yAcceleration = GRAVITY;
-
-
-
-            List<double> xPosition = new List<double>();
-            List<double> yPosition = new List<double>();
-
-            xPosition.Add(0);
-            yPosition.Add(0);
-
-            List<double> xVelocity = new List<double>();
-            xVelocity.Add(initVelocity * Math.Cos(angle * Math.PI / 180));
+            double acceleration = GRAVITY;
 
             List<double> yVelocity = new List<double>();
-            yVelocity.Add(initVelocity * Math.Sin(angle * Math.PI / 180));
+            yVelocity.Add(initVelocity);
 
             List<double> time = new List<double>();
             time.Add(0); ;
 
             do
             {
-                double vel = Velocity(xVelocity[i - 1], yVelocity[i - 1]);
                 time.Add(time[i - 1] + timestep);
-                xVelocity.Add(xVelocity[i - 1] - xAcceleration*timestep); 
-                yVelocity.Add(yVelocity[i - 1] - yAcceleration * timestep);
-
-                xPosition.Add(xPosition[i - 1] + xVelocity[i] * timestep);
-                yPosition.Add(yPosition[i - 1] + yVelocity[i] * timestep); ;
-            } while (yPosition[i++] > 0);
+                yVelocity.Add(yVelocity[i - 1] - acceleration * timestep);
+            } while (time[i++] < maxTime);
 
             double[,] velocity = new double[i - 1, i - 1];
 
             for (int j = 0; j < i - 1; j++)
             {
                 velocity[0, j] = time[j];
-                velocity[1, j] = Velocity(xVelocity[j], yVelocity[j]);
+                velocity[1, j] = yVelocity[j];
             }
 
             return velocity; ;
         }
 
 
-        public static double[,] ProjectileMotionVelocityModelWithAirResistance(double initVelocity, double angle, double timestep, double dragCoefficent)
+        public static double[,] ProjectileMotionVelocityModelWithAirResistance(double initVelocity, double maxtime, double timestep, double dragCoefficent)
         {
             const double GRAVITY = 9.8;
             int i = 1;
 
-            //As soon as the object is released, there is no acceleration affecting horizontal motion
-            double xAcceleration = 0;
-
             //The force of gravity is the only force acting upon the object.
-            double yAcceleration = GRAVITY;
+            double acceleration = GRAVITY;
 
-
-
-
-            List<double> xPosition = new List<double>();
-            List<double> yPosition = new List<double>();
-
-            xPosition.Add(0);
-            yPosition.Add(0);
-
-            List<double> xVelocity = new List<double>();
-            xVelocity.Add(initVelocity*Math.Cos(angle*Math.PI/180));
 
             List<double> yVelocity = new List<double>();
-            yVelocity.Add(initVelocity*Math.Sin(angle*Math.PI/180));
+            yVelocity.Add(initVelocity);
 
             List<double> time = new List<double>();
             time.Add(0);
 
             do
             {
-                double vel = Velocity(xVelocity[i-1], yVelocity[i-1]);
                 time.Add(time[i-1] + timestep);
-                xVelocity.Add(xVelocity[i-1] - (dragCoefficent*vel*xVelocity[i-1])*timestep);
-                yVelocity.Add(yVelocity[i-1] - yAcceleration*timestep - (dragCoefficent * yVelocity[i-1]*vel)*timestep);
+                yVelocity.Add(yVelocity[i-1] - acceleration*timestep + (dragCoefficent * yVelocity[i-1]*yVelocity[i-1])*timestep);
 
-                xPosition.Add(xPosition[i - 1] + xVelocity[i]*timestep);
-                yPosition.Add(yPosition[i - 1] + yVelocity[i]*timestep);
-            } while (yPosition[i++] > 0);
+            } while (time[i++] < maxtime);
 
             double[,] velocity = new double[i - 1, i - 1];
 
             for (int j = 0; j < i - 1; j++)
             {
                 velocity[0, j] = time[j];
-                velocity[1,j] = Velocity(xVelocity[j], yVelocity[j]);
+                velocity[1,j] = yVelocity[j];
             }
 
             return velocity;
