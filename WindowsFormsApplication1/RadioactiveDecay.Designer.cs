@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartArea = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.calculateButton = new System.Windows.Forms.Button();
             this.nucleiBox = new System.Windows.Forms.TextBox();
@@ -48,20 +48,20 @@
             // 
             // chartArea
             // 
-            chartArea1.AxisX.Maximum = 10D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.chartArea.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartArea.Legends.Add(legend1);
+            chartArea2.AxisX.Maximum = 10D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.Name = "ChartArea1";
+            this.chartArea.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartArea.Legends.Add(legend2);
             this.chartArea.Location = new System.Drawing.Point(12, 12);
             this.chartArea.Name = "chartArea";
             this.chartArea.Size = new System.Drawing.Size(669, 553);
             this.chartArea.TabIndex = 0;
             this.chartArea.Text = "Graphical Represenation";
-            title1.Name = "Title1";
-            title1.Text = "Model Results View";
-            this.chartArea.Titles.Add(title1);
+            title2.Name = "Title1";
+            title2.Text = "Model Results View";
+            this.chartArea.Titles.Add(title2);
             // 
             // calculateButton
             // 
@@ -168,7 +168,7 @@
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
-            // DisplayForm
+            // RadioactiveDecay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -185,8 +185,8 @@
             this.Controls.Add(this.nucleiBox);
             this.Controls.Add(this.calculateButton);
             this.Controls.Add(this.chartArea);
-            this.Name = "DisplayForm";
-            this.Text = "Numerical Methods in C#";
+            this.Name = "RadioactiveDecay";
+            this.Text = "NMC#: Radioactive Decay";
             ((System.ComponentModel.ISupportInitialize)(this.chartArea)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

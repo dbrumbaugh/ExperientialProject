@@ -103,22 +103,52 @@ namespace NumericalMethodsInCS
 
         private void standardButton_Click(object sender, EventArgs e)
         {
-            Plot.AddSeries("Model " + seriesCount, chart1, ref seriesCount);
-            double[,] results = Program.ProjectileMotionVelocityModel(velocity, maxtime, timestep);
-            Plot.PlotNextSeries(results, chart1, seriesCount);
+            try
+            {
+                Plot.AddSeries("Model " + seriesCount, chart1, ref seriesCount);
+                double[,] results = Program.ProjectileMotionVelocityModel(velocity, maxtime, timestep);
+                Plot.PlotNextSeries(results, chart1, seriesCount);
+            }
+            catch (OutOfMemoryException)
+            {
+                MessageBox.Show(@"Error: Insufficient memory for operation. Use a smaller stepsize");
+                Plot.RollbackSeries(chart1, ref seriesCount);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Error: An unknown error has occured. Rolling back plot.");
+                Plot.RollbackSeries(chart1, ref seriesCount);
+            }
         }
 
         private void resistanceModelButton_Click(object sender, EventArgs e)
         {
-            Plot.AddSeries("Model " + seriesCount, chart1, ref seriesCount);
-            double[,] results = Program.ProjectileMotionVelocityModelWithAirResistance(velocity, maxtime, timestep, bc);
-            Plot.PlotNextSeries(results, chart1, seriesCount);
+            try
+            {
+                Plot.AddSeries("Model " + seriesCount, chart1, ref seriesCount);
+                double[,] results = Program.ProjectileMotionVelocityModelWithAirResistance(velocity, maxtime, timestep,
+                    bc);
+                Plot.PlotNextSeries(results, chart1, seriesCount);
+            }
+
+            catch (OutOfMemoryException)
+            {
+                MessageBox.Show(@"Error: Insufficient memory for operation. Use a smaller stepsize");
+                Plot.RollbackSeries(chart1, ref seriesCount);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Error: An unknown error has occured. Rolling back plot.");
+                Plot.RollbackSeries(chart1, ref seriesCount);
+            }
+
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
             Plot.ResetChart(chart1, ref seriesCount);
         }
+
 
 
     }

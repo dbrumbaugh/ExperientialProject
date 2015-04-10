@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.chartArea = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.calculateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,10 +51,10 @@
             // 
             // chartArea
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartArea.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartArea.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.chartArea.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartArea.Legends.Add(legend2);
             this.chartArea.Location = new System.Drawing.Point(12, 12);
             this.chartArea.Name = "chartArea";
             this.chartArea.Size = new System.Drawing.Size(522, 525);
@@ -172,9 +172,9 @@
             this.bcErrorLabel.ForeColor = System.Drawing.Color.OrangeRed;
             this.bcErrorLabel.Location = new System.Drawing.Point(646, 162);
             this.bcErrorLabel.Name = "bcErrorLabel";
-            this.bcErrorLabel.Size = new System.Drawing.Size(242, 17);
+            this.bcErrorLabel.Size = new System.Drawing.Size(232, 17);
             this.bcErrorLabel.TabIndex = 12;
-            this.bcErrorLabel.Text = "ERROR: BC must be on interval (0,1)";
+            this.bcErrorLabel.Text = "ERROR: BC must be greater than 0";
             this.bcErrorLabel.Visible = false;
             // 
             // label4

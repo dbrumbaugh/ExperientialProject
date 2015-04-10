@@ -36,8 +36,21 @@ namespace NumericalMethodsInCS
 
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            AddSeries("Model" + (seriesCount + 1));
-            PlotSimpleMode();
+            try
+            {
+                AddSeries("Model" + (seriesCount + 1));
+                PlotSimpleMode();
+            }
+            catch (OutOfMemoryException)
+            {
+                MessageBox.Show(@"Error: Insufficient memory for operation. Use a smaller stepsize");
+                Plot.RollbackSeries(chartArea, ref seriesCount);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Error: An unknown error has occured. Rolling back plot.");
+                Plot.RollbackSeries(chartArea, ref seriesCount);
+            }
 
         }
 
@@ -74,8 +87,22 @@ namespace NumericalMethodsInCS
 
         private void calculateResistanceButton_Click(object sender, EventArgs e)
         {
-            AddSeries("Model" + (seriesCount + 1));
-            PlotAirResistanceModel();
+            try
+            {
+                AddSeries("Model" + (seriesCount + 1));
+                PlotAirResistanceModel();
+            }
+            catch (OutOfMemoryException)
+            {
+                MessageBox.Show(@"Error: Insufficient memory for operation. Use a smaller stepsize");
+                Plot.RollbackSeries(chartArea, ref seriesCount);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Error: An unknown error has occured. Rolling back plot.");
+                Plot.RollbackSeries(chartArea, ref seriesCount);
+            }
+
         }
 
         private void resetButton_Click(object sender, EventArgs e)
@@ -136,7 +163,7 @@ namespace NumericalMethodsInCS
 
         private void bcBox_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(bcBox.Text, out bc) && bc > 0 && bc < 1)
+            if (double.TryParse(bcBox.Text, out bc) && bc > 0)
             {
                 bcValid = true;
                 bcErrorLabel.Visible = false;
@@ -180,6 +207,5 @@ namespace NumericalMethodsInCS
                 calculateResistanceButton.Enabled = true;
             }
         }
-
     }
 }

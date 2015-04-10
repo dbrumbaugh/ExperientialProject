@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-//TODO Extract shared plotting routines from the winform objects and create a shared library
-//TODO Finish migrating routines to FORTRAN dll
-//TODO Add timestep input, multiplotting, and validation to the projectile motion form
-
 namespace NumericalMethodsInCS
 {
     class Program
     {
-         [STAThread]
+     
+           [STAThread]
         private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VelocityModel());
-            
+            Application.Run(new LandingPage());
         }
 
         public static double[,] RadioactiveModel(int nuclei, double decayConstant, double timestep, double maxTime)
@@ -128,10 +124,12 @@ namespace NumericalMethodsInCS
             return position;
         }
 
+
         private static double Velocity(double vx, double vy)
         {
             return Math.Sqrt(Math.Pow(vx, 2.0) + Math.Pow(vy, 2.0));
         }
+
 
         //assumption: no air resistance
         public static double[,] ProjectileMotionVelocityModel(double initVelocity, double maxTime, double timestep)
@@ -145,7 +143,7 @@ namespace NumericalMethodsInCS
             double acceleration = GRAVITY;
 
             List<double> yVelocity = new List<double>();
-            yVelocity.Add(initVelocity);
+            yVelocity.Add(0);
 
             List<double> time = new List<double>();
             time.Add(0); ;
@@ -178,7 +176,7 @@ namespace NumericalMethodsInCS
 
 
             List<double> yVelocity = new List<double>();
-            yVelocity.Add(initVelocity);
+            yVelocity.Add(0);
 
             List<double> time = new List<double>();
             time.Add(0);
@@ -186,8 +184,7 @@ namespace NumericalMethodsInCS
             do
             {
                 time.Add(time[i-1] + timestep);
-                yVelocity.Add(yVelocity[i-1] - acceleration*timestep + (dragCoefficent * yVelocity[i-1]*yVelocity[i-1])*timestep);
-
+                    yVelocity.Add(yVelocity[i-1] - acceleration*timestep + (dragCoefficent * yVelocity[i-1]*yVelocity[i-1])*timestep);
             } while (time[i++] < maxtime);
 
             double[,] velocity = new double[i - 1, i - 1];

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.standardButton = new System.Windows.Forms.Button();
             this.resistanceModelButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
@@ -83,10 +83,10 @@
             // 
             // chart1
             // 
-            chartArea11.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea11);
-            legend11.Name = "Legend1";
-            this.chart1.Legends.Add(legend11);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(12, 12);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(493, 587);
@@ -97,6 +97,7 @@
             // 
             this.velocityBox.Location = new System.Drawing.Point(525, 59);
             this.velocityBox.Name = "velocityBox";
+            this.velocityBox.ReadOnly = true;
             this.velocityBox.Size = new System.Drawing.Size(100, 22);
             this.velocityBox.TabIndex = 4;
             this.velocityBox.Text = "0";
@@ -179,9 +180,9 @@
             this.bcErrorLabel.ForeColor = System.Drawing.Color.OrangeRed;
             this.bcErrorLabel.Location = new System.Drawing.Point(632, 108);
             this.bcErrorLabel.Name = "bcErrorLabel";
-            this.bcErrorLabel.Size = new System.Drawing.Size(242, 17);
+            this.bcErrorLabel.Size = new System.Drawing.Size(252, 17);
             this.bcErrorLabel.TabIndex = 13;
-            this.bcErrorLabel.Text = "ERROR: BC must be on interval (0,1)";
+            this.bcErrorLabel.Text = "ERROR: BC must be greater than zero";
             this.bcErrorLabel.Visible = false;
             // 
             // timestepErrorLabel

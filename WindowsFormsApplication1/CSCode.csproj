@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LandingPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LandingPage.Designer.cs">
+      <DependentUpon>LandingPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plot.cs" />
     <Compile Include="RadioactiveDecay.cs">
       <SubType>Form</SubType>
@@ -66,6 +72,9 @@
     <Compile Include="VelocityModel.Designer.cs">
       <DependentUpon>VelocityModel.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LandingPage.resx">
+      <DependentUpon>LandingPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RadioactiveDecay.resx">
       <DependentUpon>RadioactiveDecay.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

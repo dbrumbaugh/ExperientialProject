@@ -94,5 +94,6 @@ namespace NumericalMethodsInCS
         {
             Plot.ResetChart(chartArea, ref seriesCount);
         }
+
     }
 }
